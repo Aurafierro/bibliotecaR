@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="../CSS/bootstrap.css" />
+  <script src="../JS/bootstrap.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../JS/Libro.js"></script>
+
+  <title>Listado libros</title>
+</head>
+
+<body onload="listarLibro();">
+  <div class="container">
+
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <b><a class="navbar-brand">Filtros</a></b>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Buscar libro" aria-label="Search" id="inputSearch">
+          <button class="btn btn-outline-success" type="button" onclick="listarLibro();">Buscar</button>
+          <a href="./paginaPrincipal.html" class="btn btn-outline-primary">
+            <i class="fas fa-home"></i>
+          </a>
+        </form>
+      </div>
+    </nav>
+
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th style="border: 4px solid white !important">Id libro</th>
+          <th style="border: 4px solid white !important">Título del libro</th>
+          <th style="border: 4px solid white !important">Nombre del autor</th>
+          <th style="border: 4px solid white !important">ISBN</th>
+          <th style="border: 4px solid white !important">Género</th>
+          <th style="border: 4px solid white !important">Número ejemplares disponibles</th>
+          <th style="border: 4px solid white !important">Número ejemplares ocupados</th>
+          <th style="border: 4px solid white !important">Opciones</th>
+        </tr>
+      </thead>
+      <tbody id="cuerpoTabla"></tbody>
+    </table>
+  </div>
+
+  <!-- Primer Modal para Editar Libro -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar Libro</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6">
+              <b><label for="id_libro">Id libro *</label></b>
+              <input type="text" id="id_libro" class="form-control" readonly />
+            </div>
+            <div class="col-6">
+              <b><label for="titulo">Título del libro *</label></b>
+              <input type="text" id="titulo" class="form-control" readonly />
+            </div>
+            <div class="col-6">
+              <b><label for="nombre_autor">Nombre del autor *</label></b>
+              <input type="text" id="nombre_autor" class="form-control" readonly />
+            </div>
+            <div class="col-6">
+              <b><label for="isbn">ISBN del libro *</label></b>
+              <input type="text" id="isbn" class="form-control" onfocusout="validarIsbn(this);" />
+            </div>
+            <div class="col-6">
+              <b><label for="genero">Género *</label></b>
+              <input type="text" id="genero" class="form-control" onfocusout="validarGenero(this);" />
+            </div>
+            <div class="col-6">
+              <b><label for="num_ejemplares_disponibles">Número ejemplares disponibles *</label></b>
+              <input type="text" id="num_ejemplares_disponibles" class="form-control" onfocusout="validarNumeroEjem(this);" />
+            </div>
+            <div class="col-6">
+              <b><label for="num_ejemplares_ocupados">Número ejemplares ocupados *</label></b>
+              <input type="text" id="num_ejemplares_ocupados" class="form-control" onfocusout="validarNumeroOcupado(this);" />
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="actualizarLibro();">Actualizar</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Segundo Modal para Detalles del Libro -->
+  <div class="modal fade" id="examplModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Detalles del Libro</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+           
+            <div class="col-12">
+              <b><label for="descripcion">Descripción:</label></b>
+              <p id="descripcion"></p>
+            </div>
+            <div class="col-12">
+              <b><label for="info_adicional">Información Adicional:</label></b>
+              <ul id="info_adicional">
+                <li><strong>Id libro:</strong> <span id="id_libro_detalle"></span></li>
+                <li><strong>Título del libro:</strong> <span id="titulo_detalle"></span></li>
+                <li><strong>Nombre del autor:</strong> <span id="nombre_autor_detalle"></span></li>
+                <li><strong>ISBN:</strong> <span id="isbn_detalle"></span></li>
+                <li><strong>Género:</strong> <span id="genero_detalle"></span></li>
+                <li><strong>Número de ejemplares disponibles:</strong> <span id="num_ejemplares_disponibles_detalle"></span></li>
+                <li><strong>Número de ejemplares ocupados:</strong> <span id="num_ejemplares_ocupados_detalle"></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
