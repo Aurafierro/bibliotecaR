@@ -1,14 +1,9 @@
 var url = "http://localhost:8080/api/v1/libro/";
 
-$(document).ready(function() {
-    console.log("Página cargada, ejecutando listarLibro...");
-    listarLibro();
-});
-
 function listarLibro() {
     var capturarFiltro = document.getElementById("inputSearch").value;
     var urlLocal = url;
-    if (capturarFiltro != "") {
+    if (capturarFiltro !== "") {
         urlLocal += "busquedafiltro/" + capturarFiltro;
     }
 
@@ -85,9 +80,7 @@ function listarLibro() {
                 
                 celdaOpcion.appendChild(botonVerMas);
                 
-
                 trRegistro.appendChild(celdaOpcion);
-
                 cuerpoTabla.appendChild(trRegistro);
             }
         },
@@ -99,14 +92,7 @@ function listarLibro() {
 }
 
 function llenarModal(libro) {
-   
-    document.getElementById('id_libro').value = libro.id_libro || '';
-    document.getElementById('titulo').value = libro.titulo || '';
-    document.getElementById('nombre_autor').value = libro.nombre_autor || '';
-    document.getElementById('isbn').value = libro.isbn || '';
-    document.getElementById('genero').value = libro.genero || '';
-    document.getElementById('num_ejemplares_disponibles').value = libro.num_ejemplares_disponibles || '';
-    document.getElementById('num_ejemplares_ocupados').value = libro.num_ejemplares_ocupados || '';
+    document.getElementById("descripcion").innerText = libro.descripcion;
 }
 
 
@@ -166,6 +152,7 @@ function registrarLibro() {
     "nombre_autor": document.getElementById("nombre_autor").value,
     "isbn": document.getElementById("isbn").value,
     "genero": document.getElementById("genero").value,
+    "descripcion":document.getElementById("descripcion").value,
     "num_ejemplares_disponibles": document.getElementById("num_ejemplares_disponibles").value,
     "num_ejemplares_ocupados": document.getElementById("num_ejemplares_ocupados").value
   };
@@ -176,6 +163,7 @@ function registrarLibro() {
     "nombre_autor",
     "isbn",
     "genero",
+    "descripcion",
     "num_ejemplares_disponibles",
     "num_ejemplares_ocupados"
   ];
@@ -303,7 +291,27 @@ function validarNumeroOcupado(cuadroNumero) {
   return valido;
 }
 
-//2.Crear petición que actualice la información del medico
+function validarCampos() {
+  var descripcion = document.getElementById("descripcion");
+  return validarDescripcion(descripcion);
+}
+
+function validarNumeroOcupado(cuadroNumero) {
+  var valor = cuadroNumero.value;
+  var valido = true;
+  if (valor.length < 1 || valor.length > 200) {
+    valido = false
+  }
+
+  if (valido) {
+    cuadroNumero.className = "form-control is-valid";
+  } else {
+    cuadroNumero.className = "form-control is-invalid";
+  }
+  return valido;
+}
+
+//2.Crear petición que actualice la información del libro
 
 
 function actualizarLibro() {

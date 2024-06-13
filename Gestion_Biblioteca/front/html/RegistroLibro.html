@@ -10,7 +10,7 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
 
-  <title>Añadir médico</title>
+  <title>Añadir Libro</title>
   <script src="../JS/Libro.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -51,6 +51,10 @@
         <b><label for="">Número de ejemplares ocupados *</label></b>
         <input type="text" id="num_ejemplares_ocupados" class="form-control" onfocusout="validarNumeroOcupado(this);" />
       </div>
+      <div class="col col-xl-6 col-12">
+        <b><label for="">Descripcion del libro *</label></b>
+        <input type="text" id="descripcion" class="form-control" onfocusout="validarDescripcion(this);" />
+      </div>
       
     </div>
     <br>
@@ -60,7 +64,7 @@
     <button class="btn btn-success" onclick="limpiarLibro();">
       Limpiar
     </button>
-    <a href="../html/PaginaPrincipal.html"><button class="btn btn-success">Ir a las otras funcionalidades</button></a>
+    <a href="../html/Cartas.html"><button class="btn btn-success">Ir a las otras funcionalidades</button></a>
   </div>
 </body>
 

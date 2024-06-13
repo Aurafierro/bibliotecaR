@@ -8,9 +8,10 @@ import com.gestion.gesion_bibliotec.models.usuario;
 
 public interface IUsuarioService {
 
+	
 	public String save(usuario usuario);
     public List<usuario> findAll();
-    public List<usuario> filtroGeneralUsuario(String filtro);
+    public List<usuario> filtroGeneralUsuario(String usuario);
     public Optional<usuario> findOne(String id);
     public int delete(String id);
 }

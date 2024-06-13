@@ -8,9 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.gestion.gesion_bibliotec.interfaceService.IUsuarioService;
 import com.gestion.gesion_bibliotec.interfaces.IUsuario;
+
 import com.gestion.gesion_bibliotec.models.usuario;
-
-
 
 @Service
 public class usuarioService  implements IUsuarioService {
@@ -30,8 +29,8 @@ public class usuarioService  implements IUsuarioService {
 	    }
 
 	    @Override
-	    public List<usuario> filtroGeneralUsuario(String usuario) {
-	        return data.filtroGeneralUsuario(usuario);
+	    public List<usuario> filtroGeneralUsuario(String filtro) {
+	        return data.filtroGeneralUsuario(filtro);
 	    }
 
 	    @Override

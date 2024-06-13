@@ -96,6 +96,7 @@ public class libroController {
 	        libro.setNombre_autor(libroUpdate.getNombre_autor());
 	        libro.setIsbn(libroUpdate.getIsbn());
 	        libro.setGenero(libroUpdate.getGenero());
+	        libro.setDescripcion(libroUpdate.getDescripcion());
 	        libro.setNum_ejemplares_disponibles(libroUpdate.getNum_ejemplares_disponibles());
 	        libro.setNum_ejemplares_ocupados(libroUpdate.getNum_ejemplares_ocupados());
 	        
@@ -104,7 +105,7 @@ public class libroController {
 			return new ResponseEntity<>("Guardado", HttpStatus.OK);
 
 		} else {
-			return new ResponseEntity<>("Error medico no encontrado", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Error libro no encontrado", HttpStatus.BAD_REQUEST);
 		}
 	}
 }
