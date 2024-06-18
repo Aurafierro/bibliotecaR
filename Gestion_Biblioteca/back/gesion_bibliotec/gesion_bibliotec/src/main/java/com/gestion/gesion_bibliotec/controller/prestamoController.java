@@ -51,13 +51,12 @@ public class prestamoController {
 			return new ResponseEntity<>(Listaprestamo, HttpStatus.OK);
 		}
 		
-		//filtro
-		@GetMapping("/busquedafiltro/{filtro}")
-		public ResponseEntity<Object>findFiltro(@PathVariable estado filtro){
-			var Listaprestamo = prestamoService.filtroGeneralPrestamo(filtro);
-			return new ResponseEntity<>(Listaprestamo, HttpStatus.OK);
-		}
-		
+	    @GetMapping("/busquedafiltro/{filtro}")
+	    public ResponseEntity<Object> findFiltro(@PathVariable String filtro) {
+	        var listaPrestamo = prestamoService.filtroGeneralPrestamo(filtro);
+	        return new ResponseEntity<>(listaPrestamo, HttpStatus.OK);
+	    }
+
 		
 		@GetMapping("/{id_prestamo}")
 		public ResponseEntity<Object> findOne ( @PathVariable String id_prestamo){
