@@ -41,8 +41,9 @@ dependencies {
     //dependencia para hacer peticiones restFull a la api
     implementation("com.android.volley:volley:1.2.1")
 
+
     //para las tareas en segundo hilo
-    implementation("org.jetbrains.kotlinx:kotlinx--coroutines-android:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
     //para poder interpretar la respuesta JSON
     implementation("com.google.code.gson:gson:2.10.1")

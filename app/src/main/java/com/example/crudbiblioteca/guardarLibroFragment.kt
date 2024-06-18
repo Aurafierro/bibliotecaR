@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.example.crudbiblioteca.config.config
 import java.lang.Exception
 
@@ -31,13 +33,14 @@ class guardarLibroFragment : Fragment() {
 
 
     private lateinit var txtTitulo:EditText
-    private lateinit var textAutor:EditText
+    private lateinit var txtAutor:EditText
     private lateinit var txtIsbn:EditText
     private lateinit var txtGenero:EditText
     private lateinit var txtejemplares:EditText
     private lateinit var txtejemplaresocupados:EditText
 
-    private lateinit var  id:String
+    private lateinit var btnGuardar:Button
+    private  var  id:String=""
 
     fun guardarLibro(){
         try {
@@ -54,10 +57,28 @@ class guardarLibroFragment : Fragment() {
                     //El ErrorListener se ejecuta cuando la petición genera error
                     Response.ErrorListener {  }
                 )
+                {
+                    override fun getParams(): Map<String, String>{
+                        val parametros = HashMap<String,String>()
+                        parametros.put("titulo",txtTitulo.text.toString())
+                        parametros.put("nombre_autor",txtAutor.text.toString())
+                        parametros.put("isbn",txtIsbn.text.toString())
+                        parametros.put("genero",txtGenero.text.toString())
+                        parametros.put("num_ejemplares_disponibles",txtejemplares.text.toString())
+                        parametros.put("num_ejemplares_ocupados",txtejemplaresocupados.text.toString())
+                        return parametros
+                    }
+                }
+                //se crea la cola del trabjao y se añade la petición
+                var queue=Volley.newRequestQueue(context)
+                //se añade la petición
+                queue.add(request)
 
             }else{//se actualiza el libro
 
+
             }
+
 
         }catch (error:Exception){
 
@@ -76,7 +97,18 @@ class guardarLibroFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_guardar_libro, container, false)
+        val view= inflater.inflate(R.layout.fragment_guardar_libro, container, false)
+        txtTitulo=view.findViewById(R.id.txtTitulo)
+        txtAutor=view.findViewById(R.id.txtAutor)
+        txtIsbn=view.findViewById(R.id.txtIsbn)
+        txtGenero=view.findViewById(R.id.txtGenero)
+        txtejemplares=view.findViewById(R.id.txtejemplares)
+        txtejemplaresocupados=view.findViewById(R.id.txtejemplaresocupados)
+        btnGuardar=view.findViewById(R.id.btnGuardar)
+        btnGuardar.setOnClickListener{
+            guardarLibro()
+        }
+        return view
     }
 
     companion object {

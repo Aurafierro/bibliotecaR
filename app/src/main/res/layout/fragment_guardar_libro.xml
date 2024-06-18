@@ -17,13 +17,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/txtTitulo"
+            android:id="@+id/lblLIbro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/titulo" />
 
         <EditText
-            android:id="@+id/lblTitulo"
+            android:id="@+id/txtTitulo"
             android:layout_width="match_parent"
             android:layout_height="71dp"
             android:ems="10"
@@ -31,13 +31,13 @@
             android:inputType="text" />
 
         <TextView
-            android:id="@+id/txtAutor"
+            android:id="@+id/lblAutor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/autor" />
 
         <EditText
-            android:id="@+id/lblAutor"
+            android:id="@+id/txtAutor"
             android:layout_width="match_parent"
             android:layout_height="61dp"
             android:ems="10"
@@ -45,13 +45,13 @@
             android:inputType="text" />
 
         <TextView
-            android:id="@+id/txtIsbn"
+            android:id="@+id/lblisbn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/isbn" />
 
         <EditText
-            android:id="@+id/lblIsbn"
+            android:id="@+id/txtIsbn"
             android:layout_width="match_parent"
             android:layout_height="61dp"
             android:ems="10"
@@ -59,13 +59,13 @@
             android:inputType="text" />
 
         <TextView
-            android:id="@+id/txtGenero"
+            android:id="@+id/lblGenero"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/genero" />
 
         <EditText
-            android:id="@+id/lblGenero"
+            android:id="@+id/txtGenero"
             android:layout_width="match_parent"
             android:layout_height="57dp"
             android:ems="10"
@@ -73,13 +73,13 @@
             android:inputType="text" />
 
         <TextView
-            android:id="@+id/txtejemplares"
+            android:id="@+id/lblEjemplares"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/n_mero_de_ejemplares_disponiibles" />
 
         <EditText
-            android:id="@+id/lblejemplares"
+            android:id="@+id/txtejemplares"
             android:layout_width="match_parent"
             android:layout_height="59dp"
             android:ems="10"
@@ -87,13 +87,13 @@
             android:inputType="text" />
 
         <TextView
-            android:id="@+id/txtejemplaresocupados"
+            android:id="@+id/lblejemplaresocupados"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/n_mero_de_ejemplares_ocupados" />
 
         <EditText
-            android:id="@+id/lbljemplaresocupados"
+            android:id="@+id/txtejemplaresocupados"
             android:layout_width="match_parent"
             android:layout_height="57dp"
             android:ems="10"
@@ -106,14 +106,14 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnGuardar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/guardar" />
 
             <Button
-                android:id="@+id/editar"
+                android:id="@+id/btnEditar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
