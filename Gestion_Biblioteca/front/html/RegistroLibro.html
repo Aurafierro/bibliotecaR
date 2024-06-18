@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,58 +13,48 @@
   <script src="../JS/Libro.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="../CSS/libro.css">
 </head>
 
 <body>
-
-  <div class="container">
+  <div class="container biblioteca-container"> <!-- Agregamos la clase biblioteca-container -->
     <h1 style="margin-top: 100px">Añadir libro</h1>
     <h6>Todos los campos con asterisco son obligatorios</h6>
     <br>
     <div class="row">
-     
-
       <div class="col col-xl-6 col-12">
-        <b><label for="">Titulo del libro *</label></b>
-        <input type="text" id="titulo" step="1" class="form-control"
-          onfocusout="validarTituloLibro(this);" />
+        <b><label for="titulo">Titulo del libro *</label></b>
+        <input type="text" id="titulo" class="form-control" onfocusout="validarTituloLibro(this);" />
       </div>
       <div class="col col-xl-6 col-12">
-        <b><label for="">Nombre del autor*</label></b>
+        <b><label for="nombre_autor">Nombre del autor*</label></b>
         <input type="text" id="nombre_autor" class="form-control" onfocusout="validarNombre(this);" />
       </div>
       <div class="col col-xl-6 col-12">
-    <b><label for="isbn">Isbn del libro *</label></b>
-    <input type="text" id="isbn" class="form-control" onfocusout="validarIsbn(this);" />
-</div>
-
+        <b><label for="isbn">ISBN del libro *</label></b>
+        <input type="text" id="isbn" class="form-control" onfocusout="validarIsbn(this);" />
+      </div>
       <div class="col col-xl-6 col-12">
-        <b><label for=""> Genero *</label></b>
+        <b><label for="genero">Género *</label></b>
         <input type="text" id="genero" class="form-control" onfocusout="validarGenero(this);" />
       </div>
       <div class="col col-xl-6 col-12">
-        <b><label for=""> Número de ejemplares disponibles *</label></b>
-        <input type="text" id="num_ejemplares_disponibles" class="form-control" onfocusout="validarNumeroEjem(this);"/>
+        <b><label for="num_ejemplares_disponibles">Número de ejemplares disponibles *</label></b>
+        <input type="text" id="num_ejemplares_disponibles" class="form-control" onfocusout="validarNumeroEjem(this);" />
       </div>
       <div class="col col-xl-6 col-12">
-        <b><label for="">Número de ejemplares ocupados *</label></b>
+        <b><label for="num_ejemplares_ocupados">Número de ejemplares ocupados *</label></b>
         <input type="text" id="num_ejemplares_ocupados" class="form-control" onfocusout="validarNumeroOcupado(this);" />
       </div>
       <div class="col col-xl-6 col-12">
-        <b><label for="">Descripcion del libro *</label></b>
+        <b><label for="descripcion">Descripción del libro *</label></b>
         <input type="text" id="descripcion" class="form-control" onfocusout="validarDescripcion(this);" />
       </div>
-      
     </div>
     <br>
-    <button class="btn btn-success" onclick="registrarLibro();">
-      Enviar
-    </button>
-    <button class="btn btn-success" onclick="limpiarLibro();">
-      Limpiar
-    </button>
-    <a href="../html/Cartas.html"><button class="btn btn-success">Ir a las otras funcionalidades</button></a>
+    <button class="btn btn-success" onclick="registrarLibro();">Enviar</button>
+    <button class="btn btn-success" onclick="limpiarLibro();">Limpiar</button>
+    <a href="../html/Cartas.html" class="btn btn-success">Ir a las otras funcionalidades</a>
   </div>
 </body>
-
 </html>

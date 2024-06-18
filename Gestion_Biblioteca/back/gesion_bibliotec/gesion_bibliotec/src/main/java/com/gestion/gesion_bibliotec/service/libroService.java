@@ -12,6 +12,7 @@ import com.gestion.gesion_bibliotec.models.libro;
 
 
 
+
 @Service
 public class libroService implements ILibroService {
 
@@ -44,4 +45,7 @@ public class libroService implements ILibroService {
         data.deleteById(id);
         return 1;
     }
+ 
+
+  
 }

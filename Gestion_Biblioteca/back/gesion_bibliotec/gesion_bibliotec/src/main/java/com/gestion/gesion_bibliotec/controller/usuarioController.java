@@ -95,8 +95,7 @@ public class usuarioController {
 		        usuario.setNombre(usuarioUpdate.getNombre());
 		        usuario.setCorreo(usuarioUpdate.getCorreo());
 		        usuario.setDireccion(usuarioUpdate.getDireccion());
-		        usuario.setTelefono(usuarioUpdate.getTelefono());
-		        usuario.setDescripcion_casa(usuarioUpdate.getDescripcion_casa());
+		        usuario.setTipo_usuario(usuarioUpdate.getTipo_usuario());
 		        
 
 		        usuarioService.save(usuario);

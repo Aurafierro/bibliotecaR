@@ -6,3 +6,4 @@ public enum tipoUsuario {
 	bibliotecario, 
 	administrador
 }
+

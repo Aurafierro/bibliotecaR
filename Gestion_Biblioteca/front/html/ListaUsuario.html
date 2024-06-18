@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="../CSS/bootstrap.css" />
+  <script src="../JS/bootstrap.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="..//JS/Usuario.js"></script>
+
+  <title>Listado libros</title>
+</head>
+
+<body onload="listarUsuario();">
+  <div class="container">
+
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <b><a class="navbar-brand">Filtros</a></b>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Buscar libro" aria-label="Search" id="inputSearch" >
+          <button class="btn btn-outline-success" type="button" onclick="listarUsuario();">Buscar</button>
+          <a href="./paginaPrincipal.html" class="btn btn-outline-primary">
+            <i class="fas fa-home"></i>
+          </a>
+
+          <a href="../html/Cartas.html" class="btn btn-outline-secondary ms-2">
+            <i class="fas fa-arrow-left"></i>
+          </a>
+        </form>
+      </div>
+    </nav>
+
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th style="border: 4px solid white !important">Id usuario</th>
+          <th style="border: 4px solid white !important">Nombre</th>
+          <th style="border: 4px solid white !important">Correo</th>
+          <th style="border: 4px solid white !important">Dirección</th>
+        
+          <th style="border: 4px solid white !important">Tipo de usuario</th>
+          <th style="border: 4px solid white !important">Opciones</th>
+        </tr>
+      </thead>
+      <tbody id="cuerpoTabla"></tbody>
+    </table>
+  </div>
+
+  <!-- Primer Modal para Editar Libro -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar Usuario</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6">
+              <b><label for="id_usuario">Id usuario *</label></b>
+              <input type="text" id="id_usuario" class="form-control" readonly />
+            </div>
+            <div class="col-6">
+              <b><label for="Nombre">Nombre *</label></b>
+              <input type="text" id="nombre" class="form-control" readonly />
+            </div>
+            <div class="col-6">
+              <b><label for="Correo">Correo *</label></b>
+              <input type="text" id="correo" class="form-control" readonly />
+            </div>
+            <div class="col-6">
+              <b><label for="Dirección"> Dirección  *</label></b>
+              <input type="text" id="direccion" class="form-control" onfocusout="validarIsbn(this);" />
+            </div>
+           
+            <div class="col-6">
+                <label for="tipo_usuario">Tipo de usuario</label>
+                    <select id="tipo_usuario" class="form-select">
+                    <option value="" selected disabled>Seleccione una opción</option>
+                    <option value="lector">Lector</option>
+                    <option value="bibliotecario">bibliotecario</option>
+                    <option value="administrador">administrador</option>
+                    </select>
+                </div>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="actualizarUsuario();">Actualizar</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Segundo Modal para Detalles del Usuario -->
+<div class="modal fade" id="examplModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Detalles del usuario</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-12">
+                      <b><label for="telefono">Telefono:</label></b>
+                      <p id="telefono"></p>
+                  </div>
+              </div>
+          </div>
+
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-12">
+                      <b><label for="descripcion_casa">Descripción de la casa:</label></b>
+                      <p id="descripcion_casa"></p>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+</body>
+
+</html>
