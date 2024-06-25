@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.gestion.gesion_bibliotec.interfaces.IPrestamo;
-import com.gestion.gesion_bibliotec.models.estado;
+
 import com.gestion.gesion_bibliotec.models.prestamo;
 
 
@@ -63,13 +63,7 @@ public class prestamoController {
 			var prestamo= prestamoService.findById(id_prestamo);
 			return new ResponseEntity<>(prestamo, HttpStatus.OK);
 		}
-		 @GetMapping("/historial/{id_usuario}") // Nuevo endpoint
-		    public ResponseEntity<Object> findHistorial(@PathVariable String id_usuario) {
-		        var historial = prestamoService.findByUsuario(id_usuario);
-		        return new ResponseEntity<>(historial, HttpStatus.OK);
-		    }
-
-	
+		
 		
 		@PutMapping("/{id_prestamo}")
 		public ResponseEntity<Object> update(@PathVariable String id_prestamo, @ModelAttribute("prestamo") prestamo prestamoUpdate) {

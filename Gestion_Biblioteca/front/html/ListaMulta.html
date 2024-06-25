@@ -10,20 +10,20 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
- 
+  <script src="../JS/multa.js"></script>
 
-  <title>Listado préstamo</title>
+  <title>Listado multa</title>
 </head>
 
-<body onload="listarPrestamo(); ">
+<body onload="listarMulta();">
   <div class="container">
 
     <nav class="navbar bg-body-tertiary">
       <div class="container-fluid">
         <b><a class="navbar-brand">Filtros</a></b>
         <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Buscar libro" aria-label="Search" id="inputSearch" >
-          <button class="btn btn-outline-success" type="button" onclick="listarPrestamo();">Buscar</button>
+          <input class="form-control me-2" type="search" placeholder="Buscar multa" aria-label="Search" id="inputSearch" >
+          <button class="btn btn-outline-success" type="button" onclick="listarMulta();">Buscar</button>
           <a href="./paginaPrincipal.html" class="btn btn-outline-primary">
             <i class="fas fa-home"></i>
           </a>
@@ -38,12 +38,13 @@
     <table class="table table-dark table-striped">
       <thead>
         <tr>
-          <th style="border: 4px solid white !important">Id préstamo</th>
-          <th style="border: 4px solid white !important">Fecha del préstamo</th>
-          <th style="border: 4px solid white !important">Fecha de devolución</th>
-          <th style="border: 4px solid white !important">Libro prestado</th>
-          <th style="border: 4px solid white !important">Usuario </th>
-          <th style="border: 4px solid white !important">Estado</th>
+          <th style="border: 4px solid white !important">Id multa</th>
+          <th style="border: 4px solid white !important">Fecha de la multa</th>
+          <th style="border: 4px solid white !important">Valor multa</th>
+          <th style="border: 4px solid white !important">Usuario</th>
+        
+          <th style="border: 4px solid white !important">Estado prestado</th>
+          <th style="border: 4px solid white !important">Estado multa</th>
           <th style="border: 4px solid white !important">Opciones</th>
         </tr>
       </thead>
@@ -63,27 +64,40 @@
           <div class="row">
 
             <div class="col-6">
-                <b><label for="id_libro">Id préstamo *</label></b>
-                <input type="text" id="id_prestamo" class="form-control" readonly />
+                <b><label for="id_libro">Id multa *</label></b>
+                <input type="text" id="id_multa" class="form-control" readonly />
               </div>
             
             <div class="col-6">
-              <b><label for="Nombre">Fecha del préstamo *</label></b>
-              <input type="date" id="fecha_prestamo" class="form-control" readonly />
+              <b><label for="Nombre">Fecha de la multa *</label></b>
+              <input type="date" id="fecha_multa" class="form-control" readonly />
             </div>
             <div class="col-6">
-              <b><label for="Correo">Fecha de devolución *</label></b>
-              <input type="date" id="fecha_devolucion" class="form-control" readonly />
+              <b><label for="Correo">Valor de la multa *</label></b>
+              <input type="date" id="valor_multa" class="form-control" readonly />
             </div>
-            
+            <div class="col-6">
+                <b><label for="usuario">Usuario *</label></b>
+                <select name="usuario" id="usuario" class="form-select" onfocusout="validarUsuario(this);">
+                  <option selected disabled value="">Seleccione el usuario</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <b><label for="estado">Estado del préstamo *</label></b>
+                <select name="estado" id="estado" class="form-select" onfocusout="validarEstado(this);">
+                  <option value="" selected disabled>Seleccione una opción</option>
+                  <option value="prestamo">Préstamo</option>
+                  <option value="entregado">Entregado</option>
+                  <option value="cancelado">Cancelado</option>
+                </select>
            
             <div class="col-6">
                 <label for="tipo_usuario">Estado</label>
-                    <select id="estado" class="form-select">
+                    <select id="estado_multa" class="form-select">
                     <option value="" selected disabled>Seleccione una opción</option>
-                    <option value="préstamo">préstamo</option>
-                    <option value="entregado">entregado</option>
-                    <option value="cancelado">cancelado</option>
+                    <option value="pendiente">pendiente</option>
+                    <option value="al dia">al dia</option>
+                   
                     </select>
                 </div>
           </div>
@@ -96,7 +110,7 @@
     </div>
   </div>
 
-  <script src="../JS/prestamo.js"></script>
+ 
 
 </body>
 

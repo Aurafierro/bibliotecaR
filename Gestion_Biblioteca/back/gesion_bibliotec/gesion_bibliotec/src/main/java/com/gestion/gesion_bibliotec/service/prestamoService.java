@@ -38,9 +38,6 @@ public class prestamoService implements IPrestamoService {
 	        return data.findById(id);
 	    }
 
-	    @Override
-	    public List<prestamo> findByUsuario(String id_usuario) {
-	        return data.findByUsuario(id_usuario); 
-	    }
+	
 	
 }

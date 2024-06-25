@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,7 +31,7 @@ public class libroController {
     private ILibroService libroService;
 
     @PostMapping("/")
-    public ResponseEntity<Object> save(@ModelAttribute("libro") libro libro) {
+    public ResponseEntity<Object> save(@RequestBody libro libro) {
         List<libro> libros = libroService.filtroGeneral(libro.getTitulo());
         if (!libros.isEmpty()) {
             return new ResponseEntity<>("El libro ya tiene un ingreso activo", HttpStatus.BAD_REQUEST);
@@ -71,7 +72,7 @@ public class libroController {
 	}
 
 	@PutMapping("/{id_libro}")
-	public ResponseEntity<Object> update(@PathVariable String id_libro, @ModelAttribute("libro") libro libroUpdate) {
+	public ResponseEntity<Object> update(@PathVariable String id_libro, @RequestBody libro libroUpdate) {
 	    
 		// Verificar si hay campos vacíos
 		

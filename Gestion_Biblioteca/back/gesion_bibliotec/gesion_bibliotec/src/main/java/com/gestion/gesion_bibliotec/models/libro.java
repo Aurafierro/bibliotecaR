@@ -52,7 +52,7 @@ public class libro {
 		this.nombre_autor = nombre_autor;
 		this.isbn = isbn;
 		this.genero = genero;
-		this.descripcion = descripcion;
+		this.descripcion = "";
 		this.num_ejemplares_disponibles = num_ejemplares_disponibles;
 		this.num_ejemplares_ocupados = num_ejemplares_ocupados;
 	}

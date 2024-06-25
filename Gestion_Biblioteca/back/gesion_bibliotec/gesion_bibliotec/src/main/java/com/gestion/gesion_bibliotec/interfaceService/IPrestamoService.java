@@ -13,7 +13,7 @@ public interface IPrestamoService {
     public List<prestamo> findAll();
     public List<prestamo> filtroGeneralPrestamo(String prestamo);
     public Optional<prestamo> findOne(String id);
-   public   List<prestamo> findByUsuario(String id_usuario);
+ 
 	
     
 }
