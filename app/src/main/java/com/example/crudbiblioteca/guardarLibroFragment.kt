@@ -11,10 +11,16 @@ import android.widget.EditText
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.JsonRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.crudbiblioteca.config.config
+import org.json.JSONObject
 import java.lang.Exception
+import com.android.volley.Request.Method
+import com.example.crudbiblioteca.models.libro
+import com.google.gson.Gson
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,15 +44,51 @@ class guardarLibroFragment : Fragment() {
     private lateinit var txtGenero:EditText
     private lateinit var txtejemplares:EditText
     private lateinit var txtejemplaresocupados:EditText
+    private lateinit var txtdescripcion:EditText
 
     private lateinit var btnGuardar:Button
-    private  var  id:String=""
+    //traer id cualquiera
+    private  var  id:String="1a8bb3a9-bcde-4fd8-9838-fe0767e4f552"
 
+
+    //metodo encargado de traer la informacion del libro
+    fun  consultarLibro(){
+        if(id!=""){
+            var request=JsonObjectRequest(
+                Method.GET, //metodo de la peticion
+                config.urllibro+id,
+                null,
+                {response->
+                    //la variable response contiene la respuesta de la api
+                    //se convierte de json a un objeto libre
+                    val gson=Gson()
+                    val libro:libro=gson.fromJson(response.toString(),libro::class.java)
+                    txtTitulo.setText(response.getString("titulo"))
+                    txtAutor.setText(response.getString("nombre_autor"))
+                    txtIsbn.setText(response.getString("isbn"))
+                    txtGenero.setText(response.getString("genero"))
+                    txtejemplares.setText(response.getInt("num_ejemplares_disponibles"))
+                    txtejemplaresocupados.setText(response.getInt("num_ejemplares_ocupados").toString())
+                    txtdescripcion.setText(response.getString("descripcion").toString())
+                },
+                {error->
+                    Toast.makeText(
+                        context,
+                        "Error al consultar",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            )
+            var queue=Volley.newRequestQueue(context)
+            queue.add(request)
+        }
+    }
+ 
     fun guardarLibro(){
         try {
             if (id==""){//se crea el libro
                 //se crea la peticion
-                val request= object :StringRequest(
+              /*  val request= object :StringRequest(
                     Request.Method.POST,
                     config.urllibro,
                     //el listenerel metodo que se ejecuta cuando lapeticion es correcta.
@@ -68,7 +110,39 @@ class guardarLibroFragment : Fragment() {
                         parametros.put("num_ejemplares_ocupados",txtejemplaresocupados.text.toString())
                         return parametros
                     }
-                }
+                }*/
+                var parametros= JSONObject()
+                parametros.put("titulo_libro",txtTitulo.text.toString())
+                parametros.put("autor_libro",txtAutor.text.toString())
+                parametros.put("isbn_libro",txtIsbn.text.toString())
+                parametros.put("genero_libro",txtGenero.text.toString())
+                parametros.put("numero_ejemplares_disponibles",txtejemplares.text.toString())
+                parametros.put("numero_ejemplares_ocupados",txtejemplaresocupados.text.toString())
+                parametros.put("descripcion",txtdescripcion.toString())
+
+                var request= JsonObjectRequest(
+                    Request.Method.POST,
+                    config.urllibro,
+                    parametros,
+
+                    {response->
+                        Toast.makeText(
+                            context,
+                            "Se guardó correctamente",
+                            Toast.LENGTH_LONG
+
+                        ).show()
+                    },
+                    { error ->
+                        Toast.makeText(
+                            context,
+                            "Se generó un error",
+                            Toast.LENGTH_LONG)
+                            .show()
+
+
+                    }
+                )
                 //se crea la cola del trabjao y se añade la petición
                 var queue=Volley.newRequestQueue(context)
                 //se añade la petición
@@ -104,10 +178,12 @@ class guardarLibroFragment : Fragment() {
         txtGenero=view.findViewById(R.id.txtGenero)
         txtejemplares=view.findViewById(R.id.txtejemplares)
         txtejemplaresocupados=view.findViewById(R.id.txtejemplaresocupados)
+        txtdescripcion=view.findViewById(R.id.txtdescripcion)
         btnGuardar=view.findViewById(R.id.btnGuardar)
         btnGuardar.setOnClickListener{
             guardarLibro()
         }
+        consultarLibro()
         return view
     }
 
