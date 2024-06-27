@@ -1,4 +1,4 @@
-package com.gestion.gesion_bibliotec.models;
+   package com.gestion.gesion_bibliotec.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

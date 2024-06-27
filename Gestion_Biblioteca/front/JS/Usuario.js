@@ -1,5 +1,35 @@
 var url = "http://localhost:8080/api/v1/usuario/";
 
+document.getElementById("nombre").addEventListener("keypress",soloLetras);
+document.getElementById("correo").addEventListener("keypress",soloLetras);
+document.getElementById("direccion").addEventListener("keypress",soloLetras);
+document.getElementById("tipo_usuario").addEventListener("keypress",soloLetras);
+
+//este metodo solo permite letras 
+function soloLetras(event){
+  console.log("llave presionada: "+event.key);
+  console.log("Codigo letra:"+event.keyCode)
+  const letrasPermitidas = [
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+    'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+    'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+    'Á', 'É', 'Í', 'Ó', 'Ú', 'á', 'é', 'í', 'ó', 'ú'
+  ];
+  
+  const numerosPermitidos=[
+  '1','2','3','4','5','6','7','8','9','0'
+  ]
+  
+  const CaracteresPermitidos=[
+    '@',' ','_','-','.'
+  ]
+  if(!(letrasPermitidas && CaracteresPermitidos && numerosPermitidos.includes(event.key))){
+  event.preventDefault();
+  return;
+  }
+}
+
 function listarUsuario() {
     var capturarFiltro = document.getElementById("inputSearch").value;
     var urlLocal = url;

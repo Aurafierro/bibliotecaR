@@ -15,7 +15,7 @@
   <title>Listado préstamo</title>
 </head>
 
-<body onload="listarPrestamo(); ">
+<body onload="listarPrestamo(); CargarFormulario();  ">
   <div class="container">
 
     <nav class="navbar bg-body-tertiary">
@@ -61,19 +61,37 @@
         </div>
         <div class="modal-body">
           <div class="row">
+            <div class="col-6">
+              <b><label for="usuario" class="form-label">Nombre del usuario</label></b>
+              <select name="usuario" id="id_usuario" class="form-select">
+                  <option value="" selected disabled>Seleccione el usuario </option>
+                  <option value=""></option>
+                  <option value=""></option>
+              </select>
+          </div>
+          <div class="col-6">
+              <b><label for="libro" class="form-label">Nombre del libro</label></b>
+              <select name="libro" id="id_libro" class="form-select">
+                  <option selected disabled value="">
+                      Seleccione el libro
+                  </option>
+                  <option value=""></option>
+                  <option value=""></option>
+              </select>
+          </div>
 
             <div class="col-6">
                 <b><label for="id_libro">Id préstamo *</label></b>
-                <input type="text" id="id_prestamo" class="form-control" readonly />
+                <input type="text" id="id_prestamo" class="form-control"  />
               </div>
             
             <div class="col-6">
               <b><label for="Nombre">Fecha del préstamo *</label></b>
-              <input type="date" id="fecha_prestamo" class="form-control" readonly />
+              <input type="date" id="fecha_prestamo" class="form-control"  />
             </div>
             <div class="col-6">
               <b><label for="Correo">Fecha de devolución *</label></b>
-              <input type="date" id="fecha_devolucion" class="form-control" readonly />
+              <input type="date" id="fecha_devolucion" class="form-control"  />
             </div>
             
            
