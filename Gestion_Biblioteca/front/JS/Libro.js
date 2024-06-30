@@ -1,36 +1,44 @@
 var url = "http://localhost:8080/api/v1/libro/";
 
-document.getElementById("titulo").addEventListener("keypress",soloLetras);
-document.getElementById("nombre_autor").addEventListener("keypress",soloLetras);
-document.getElementById("genero").addEventListener("keypress",soloLetras);
-document.getElementById("descripcion").addEventListener("keypress",soloLetras);
+
 document.getElementById("isbn").addEventListener("keypress",soloNumeros);
 document.getElementById("num_ejemplares_disponibles").addEventListener("keypress",soloNumeros);
 document.getElementById("num_ejemplares_ocupados").addEventListener("keypress",soloNumeros);
 //este metodo solo permite letras 
+
+document.getElementById("titulo").addEventListener("keypress",soloLetras);
+document.getElementById("nombre_autor").addEventListener("keypress",soloLetras);
+document.getElementById("genero").addEventListener("keypress",soloLetras);
+
 function soloLetras(event){
-  console.log("llave presionada: "+event.key);
-  console.log("Codigo letra:"+event.keyCode)
-  const letrasPermitidas = [
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-    'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-    'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-    'Á', 'É', 'Í', 'Ó', 'Ú', 'á', 'é', 'í', 'ó', 'ú'
+  console.log("Llave presionada: "+event.key);
+  console.log("Código tecla: "+event.keyCode);
+  
+  const letrasPermitidas=[
+    //letras en minúsculas
+    "a","b","c","d","e","f","g","h","i","j","k","l","m","n","p",
+    "q","r","s","t","u","v","x","y","w","o","z","ñ","Ñ",
+    //LETRAS EN MAYÚSCULAS
+    "A","B","C","D","E","F","G","H","I","J","K","L",
+    "M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z", " ",
+    //letras con tildes, mayusculas y minusculas
+    "á",  "é",  "í",  "ó",  "ú",  "Á",  "É",  "Í",  "Ó",  "Ú"
+
   ];
-  
-  const numerosPermitidos=[
-  '1','2','3','4','5','6','7','8','9','0'
-  ]
-  
-  const CaracteresPermitidos=[
-    '@',' ','_','-','.'
-  ]
-  if(!(letrasPermitidas && CaracteresPermitidos.includes(event.key))){
-  event.preventDefault();
-  return;
+  const numeroPermitidos=[
+    '1', '2', '3','4','5','6','7','8','9','0'
+  ];
+  const caracteresPermitidos=[
+    '@','_','-','.'
+  ];
+
+
+  if (!(letrasPermitidas.includes(event.key))){
+    event.preventDefault();
+    return;
   }
 }
+
 function soloNumeros(event){
   console.log("llave presionada: "+event.key);
   console.log("Codigo numero:"+event.keyCode)
@@ -386,7 +394,7 @@ function actualizarLibro() {
         "num_ejemplares_disponibles": num_ejemplares_disponibles,
         "num_ejemplares_ocupados": num_ejemplares_ocupados
     };
-
+    
     // Realizar la petición AJAX si todos los campos son válidos
     $.ajax({
         url: url + id_libro,

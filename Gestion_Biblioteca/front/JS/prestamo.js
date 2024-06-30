@@ -92,7 +92,7 @@ function consultarPrestamoID(id) {
         console.log("esperando a los usuario");
         contadorRepeticiones++;
         if(contadorRepeticiones>=20){
-          alert("Error al consultar vuelve a intentarlo");
+          alert("Error al consultar vuelve a intentarlo")
           break;
         }
       }

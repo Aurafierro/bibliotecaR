@@ -1,34 +1,71 @@
 var url = "http://localhost:8080/api/v1/usuario/";
 
-document.getElementById("nombre").addEventListener("keypress",soloLetras);
-document.getElementById("correo").addEventListener("keypress",soloLetras);
-document.getElementById("direccion").addEventListener("keypress",soloLetras);
-document.getElementById("tipo_usuario").addEventListener("keypress",soloLetras);
 
-//este metodo solo permite letras 
-function soloLetras(event){
-  console.log("llave presionada: "+event.key);
-  console.log("Codigo letra:"+event.keyCode)
-  const letrasPermitidas = [
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-    'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-    'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-    'Á', 'É', 'Í', 'Ó', 'Ú', 'á', 'é', 'í', 'ó', 'ú'
-  ];
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("nombre").addEventListener("keypress", soloLetras);
+  document.getElementById("descripcion_casa").addEventListener("keypress", soloLetras);
+  document.getElementById("genero").addEventListener("keypress", soloLetras);
+  document.getElementById("correo").addEventListener("keypress", soloCorreoDireccion);
+  document.getElementById("direccion").addEventListener("keypress", soloCorreoDireccion);
+
+  function soloLetras(event){
+    console.log("Llave presionada: " + event.key);
+    console.log("Código tecla: " + event.keyCode);
   
-  const numerosPermitidos=[
-  '1','2','3','4','5','6','7','8','9','0'
-  ]
+    const letrasPermitidas = [
+      "a","b","c","d","e","f","g","h","i","j","k","l","m","n","p",
+      "q","r","s","t","u","v","x","y","w","o","z","ñ","Ñ",
+      "A","B","C","D","E","F","G","H","I","J","K","L",
+      "M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z", " ",
+      "á",  "é",  "í",  "ó",  "ú",  "Á",  "É",  "Í",  "Ó",  "Ú"
+    ];
   
-  const CaracteresPermitidos=[
-    '@',' ','_','-','.'
-  ]
-  if(!(letrasPermitidas && CaracteresPermitidos && numerosPermitidos.includes(event.key))){
-  event.preventDefault();
-  return;
+    if (!letrasPermitidas.includes(event.key)){
+      event.preventDefault();
+    }
   }
-}
+
+  function soloCorreoDireccion(event){
+    console.log("Llave presionada: " + event.key);
+    console.log("Código tecla: " + event.keyCode);
+
+    const letrasPermitidas = [
+      "a","b","c","d","e","f","g","h","i","j","k","l","m","n","p",
+      "q","r","s","t","u","v","x","y","w","o","z","ñ","Ñ",
+      "A","B","C","D","E","F","G","H","I","J","K","L",
+      "M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z", " ",
+      "á",  "é",  "í",  "ó",  "ú",  "Á",  "É",  "Í",  "Ó",  "Ú"
+    ];
+    const caracteresPermitidos=[
+      '@','_','-','.','0','1','2','3','4','5','6','7','8','9'
+    ];
+
+    if (!(letrasPermitidas.includes(event.key) || caracteresPermitidos.includes(event.key))){
+      event.preventDefault();
+    }
+  }
+});
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("telefono").addEventListener("keypress", soloNumeros);
+  
+
+  function soloNumeros(event){
+    console.log("Llave presionada: " + event.key);
+    console.log("Código tecla: " + event.keyCode);
+  
+    const numeroPermitidos = [
+      "1","2","3","4","5","6","7","8","9","0"
+    ];
+  
+    if (!(numeroPermitidos.includes(event.key))){
+      event.preventDefault();
+      return;
+    }
+  }
+});
+
+
+
 
 function listarUsuario() {
     var capturarFiltro = document.getElementById("inputSearch").value;
@@ -170,45 +207,69 @@ function consultarUsuarioID(id) {
 }
 
 function registrarUsuario() {
-  let formData = {
-    "nombre": document.getElementById("nombre").value,
-    "correo": document.getElementById("correo").value,
-    "direccion": document.getElementById("direccion").value,
-    "telefono": document.getElementById("telefono").value,
-    "descripcion_casa":document.getElementById("descripcion_casa").value,
-    "tipo_usuario": document.getElementById("tipo_usuario").value
-  };
+  let nombre = document.getElementById("nombre").value.trim();
+  let correo = document.getElementById("correo").value.trim();
+  let direccion = document.getElementById("direccion").value.trim();
+  let telefono = document.getElementById("telefono").value.trim();
+  let descripcion_casa = document.getElementById("descripcion_casa").value.trim();
+  let tipo_usuario = document.getElementById("tipo_usuario").value.trim();
 
+  // Validar que al menos uno de los campos requeridos esté lleno
+  if (nombre === "" && correo === "" && direccion === "" && telefono === "" && descripcion_casa === "" && tipo_usuario === "") {
+    Swal.fire({
+      icon: 'error',
+      title: 'Campos vacíos',
+      text: 'Todos los campos son obligatorios. Por favor, llénelos correctamente.',
+      confirmButtonText: 'Entendido'
+    });
+    return;
+  }
+
+  // Validar que todos los campos requeridos estén llenos
   let camposValidos = true;
-  let camposRequeridos = [
-    "nombre",
-    "correo",
-    "direccion",
-    "telefono",
-    "descripcion_casa",
-    "tipo_usuario"
-  ];
+  let camposRequeridos = [nombre, correo, direccion, telefono, descripcion_casa, tipo_usuario];
 
   camposRequeridos.forEach(function (campo) {
-    let valorCampo = document.getElementById(campo).value.trim();
-    if (valorCampo === "") {
+    if (campo === "") {
       camposValidos = false;
-      return false; 
+      return false;
     }
   });
 
+  // Validar correo electrónico completo usando la función validarCorreo()
+  if (!validarCorreo(correo)) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Correo electrónico incompleto',
+      text: 'Por favor, ingrese un correo válido.',
+      confirmButtonText: 'Entendido'
+    });
+    return;
+  }
+  
+  // Si todos los campos están llenos, proceder con la solicitud AJAX
   if (camposValidos) {
+    let formData = {
+      "nombre": nombre,
+      "correo": correo,
+      "direccion": direccion,
+      "telefono": telefono,
+      "descripcion_casa": descripcion_casa,
+      "tipo_usuario": tipo_usuario
+    };
+
     $.ajax({
-      url: url,
+      url: "http://localhost:8080/api/v1/usuario/",
       type: "POST",
-      data: formData,
+      contentType: "application/json",
+    data: JSON.stringify(formData),
       success: function (result) {
         Swal.fire({
           title: "¡Excelente!",
           text: "Se guardó correctamente",
           icon: "success"
         });
-        limpiarUsuario();
+        limpiarUsuario(); // Suponiendo que tienes una función para limpiar el formulario
       },
       error: function (error) {
         Swal.fire("Error", "Error al guardar, " + error.responseText, "error");
@@ -223,6 +284,13 @@ function registrarUsuario() {
     });
   }
 }
+
+// Función para validar el formato del correo electrónico
+function validarCorreo(correo) {
+  let partesCorreo = correo.split('@');
+  return partesCorreo.length === 2 && partesCorreo[1].indexOf('.') !== -1;
+}
+
 //nombre
 function validarCampos() {
   var nombre = document.getElementById("nombre");
@@ -268,26 +336,7 @@ function validarDireccion(cuadroNumero) {
 
 
 
-//coreeo
-function validarCampos() {
-  var correo = document.getElementById("correo");
-  return validarCorreo(correo);
-}
 
-function validarCorreo(cuadroNumero) {
-  var valor = cuadroNumero.value;
-  var valido = true;
-  if (valor.length < 1 || valor.length > 100) {
-    valido = false
-  }
-
-  if (valido) {
-    cuadroNumero.className = "form-control is-valid";
-  } else {
-    cuadroNumero.className = "form-control is-invalid";
-  }
-  return valido;
-}
 
 //telefono
 function validarCampos() {
@@ -395,7 +444,8 @@ function actualizarUsuario() {
     $.ajax({
         url: url + id_usuario,
         type: "PUT",
-        data: formData,
+        contentType: "application/json",
+        data: JSON.stringify(formData),
         success: function(result) {
             // Manejar la respuesta exitosa según necesites
             Swal.fire({

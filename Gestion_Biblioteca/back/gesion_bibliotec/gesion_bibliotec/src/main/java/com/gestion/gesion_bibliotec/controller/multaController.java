@@ -57,6 +57,8 @@ public class multaController {
 	            multa multaExistente = multa.get();
 
 	            multaExistente.setValor_multa(multaUpdate.getValor_multa());
+	            multaExistente.setUsuario(multaUpdate.getUsuario());
+	            multaExistente.setPrestamo(multaUpdate.getPrestamo());
 	            multaExistente.setFecha_multa(multaUpdate.getFecha_multa());
 	            multaExistente.setEstado_multa(multaUpdate.getEstado_multa());
 
