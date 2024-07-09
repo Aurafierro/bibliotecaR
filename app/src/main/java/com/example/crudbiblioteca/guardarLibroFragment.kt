@@ -48,28 +48,21 @@ class guardarLibroFragment : Fragment() {
 
     private lateinit var btnGuardar:Button
     //traer id cualquiera
-    private  var  id:String="1a8bb3a9-bcde-4fd8-9838-fe0767e4f552"
+    private  var  id:String=""
 
 
     //metodo encargado de traer la informacion del libro
     fun  consultarLibro(){
-        if(id!=""){
+        if (id!=""){
+
             var request=JsonObjectRequest(
-                Method.GET, //metodo de la peticion
-                config.urllibro+id,
-                null,
+                Method.GET, //método de la petición
+                config.urllibro+id, //url
+                null, //parámetros
                 {response->
-                    //la variable response contiene la respuesta de la api
-                    //se convierte de json a un objeto libre
                     val gson=Gson()
                     val libro:libro=gson.fromJson(response.toString(),libro::class.java)
-                    txtTitulo.setText(response.getString("titulo"))
-                    txtAutor.setText(response.getString("nombre_autor"))
-                    txtIsbn.setText(response.getString("isbn"))
-                    txtGenero.setText(response.getString("genero"))
-                    txtejemplares.setText(response.getInt("num_ejemplares_disponibles"))
-                    txtejemplaresocupados.setText(response.getInt("num_ejemplares_ocupados").toString())
-                    txtdescripcion.setText(response.getString("descripcion").toString())
+                    txtAutor.setText(libro.nombre_autor)
                 },
                 {error->
                     Toast.makeText(
@@ -112,13 +105,13 @@ class guardarLibroFragment : Fragment() {
                     }
                 }*/
                 var parametros= JSONObject()
-                parametros.put("titulo_libro",txtTitulo.text.toString())
-                parametros.put("autor_libro",txtAutor.text.toString())
-                parametros.put("isbn_libro",txtIsbn.text.toString())
-                parametros.put("genero_libro",txtGenero.text.toString())
-                parametros.put("numero_ejemplares_disponibles",txtejemplares.text.toString())
-                parametros.put("numero_ejemplares_ocupados",txtejemplaresocupados.text.toString())
-                parametros.put("descripcion",txtdescripcion.toString())
+                parametros.put("titulo",txtTitulo.text.toString())
+                parametros.put("nombre_autor",txtAutor.text.toString())
+                parametros.put("isbn",txtIsbn.text.toString())
+                parametros.put("genero",txtGenero.text.toString())
+                parametros.put("num_ejemplares_disponibles",txtejemplares.text.toString())
+                parametros.put("num_ejemplares_ocupados",txtejemplaresocupados.text.toString())
+                parametros.put("descripcion",txtdescripcion.text.toString())
 
                 var request= JsonObjectRequest(
                     Request.Method.POST,
@@ -149,6 +142,7 @@ class guardarLibroFragment : Fragment() {
                 queue.add(request)
 
             }else{//se actualiza el libro
+
 
 
             }

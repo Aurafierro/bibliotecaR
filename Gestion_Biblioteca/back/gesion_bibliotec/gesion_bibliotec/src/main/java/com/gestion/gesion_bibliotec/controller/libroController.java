@@ -34,11 +34,30 @@ public class libroController {
     public ResponseEntity<Object> save(@RequestBody libro libro) {
         List<libro> libros = libroService.filtroGeneral(libro.getTitulo());
         if (!libros.isEmpty()) {
-            return new ResponseEntity<>("El libro ya tiene un ingreso activo", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("El libro ya tiene un ingreso ", HttpStatus.BAD_REQUEST);
         }
-        if (libro.getIsbn().equals("")) {
-            return new ResponseEntity<>("El ISBN del libro ya está dentro del sistema", HttpStatus.BAD_REQUEST);
+        if (libro.getIsbn().length()!=13) {
+            return new ResponseEntity<>("El ISBN es de 13 números", HttpStatus.BAD_REQUEST);
         }
+        if (libro.getNombre_autor().equals("")) {
+            return new ResponseEntity<>("El nombre del autor es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+        if (libro.getGenero().equals("")) {
+            return new ResponseEntity<>("El genero es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+        if (libro.getDescripcion().equals("")) {
+            return new ResponseEntity<>("El descripcion es un campo obligatorio", HttpStatus.BAD_REQUEST);
+        }
+     
+        if (libro.getNum_ejemplares_disponibles() <= 0) {
+            return new ResponseEntity<>("El número de ejemplares disponibles debe ser mayor que cero", HttpStatus.BAD_REQUEST);
+        }
+
+       
+        if (libro.getNum_ejemplares_ocupados() < 0) {
+            return new ResponseEntity<>("El número de ejemplares ocupados debe ser mayor o igual que cero", HttpStatus.BAD_REQUEST);
+        }
+
 
         libroService.save(libro);
         return new ResponseEntity<>(libro, HttpStatus.OK);

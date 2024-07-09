@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/lblLIbro"
+            android:id="@+id/lbllibro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/titulo" />
@@ -31,7 +31,7 @@
             android:inputType="text" />
 
         <TextView
-            android:id="@+id/lblAutor"
+            android:id="@+id/lblautor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/autor" />
