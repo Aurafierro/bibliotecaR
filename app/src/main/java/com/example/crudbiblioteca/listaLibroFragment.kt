@@ -3,8 +3,13 @@ package com.example.crudbiblioteca
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import com.android.volley.Request
 import android.view.View
 import android.view.ViewGroup
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.JsonRequest
+import com.android.volley.toolbox.Volley
+import com.example.crudbiblioteca.config.config
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,13 +34,40 @@ class listaLibroFragment : Fragment() {
         }
     }
 
+    fun cargar_libro(){
+        try{
+            var request=JsonArrayRequest(
+                Request.Method.GET,
+                config.urllibro,
+                null,
+                {response->
+                    var registros=response
+                },
+                {error->}
+            )
+            val queue= Volley.newRequestQueue(context)
+            queue.add(request)
+        }catch (e:Exception){
+
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lista_libro, container, false)
-    }
+        return inflater.inflate(R.layout.fragment_lista_libro, container, false)}
+       /* lbllibro=view.findViewById(R.id.lbllibro)
+        lblautor=view.findViewById(R.id.lblautor)
+
+        btnEditar=view.findViewById(R.id.btnEditar)
+        btnEditar.setOnClickListener{editar()}
+        btneliminar=view.findViewById(R.id.btneliminar)
+        btneliminar.setOnClickListener{eliminar()}
+
+
+*/
 
     companion object {
         /**

@@ -15,6 +15,7 @@ import com.android.volley.toolbox.Volley
 import com.example.crudbiblioteca.config.config
 import com.example.crudbiblioteca.models.libro
 import com.google.gson.Gson
+import org.json.JSONObject
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,7 +38,7 @@ class detalleLibroFragment : Fragment() {
     private lateinit var lbLisbn: TextView
     private lateinit var lblgenero: TextView
     private lateinit var lblejemplares: TextView
-    private lateinit var lblEjemplaresocupados: TextView
+    private lateinit var lblejemplaresocupados: TextView
     private lateinit var lbldescripion: TextView
     private lateinit var btnEditar: Button
     private lateinit var btneliminar:Button
@@ -58,7 +59,7 @@ class detalleLibroFragment : Fragment() {
                     lbLisbn.setText(response.getString(libro.isbn))
                     lblgenero.setText(response.getString(libro.genero))
                     lblejemplares.setText(response.getInt("num_ejemplares_disponibles").toString())
-                    lblEjemplaresocupados.setText(response.getInt("num_ejemplares_ocupados").toString())
+                    lblejemplaresocupados.setText(response.getInt("num_ejemplares_ocupados").toString())
 
                 },
                 {error->
@@ -98,20 +99,61 @@ class detalleLibroFragment : Fragment() {
         lbLisbn=view.findViewById(R.id.lbLisbn)
         lblgenero=view.findViewById(R.id.lblgenero)
         lblejemplares=view.findViewById(R.id.lblejemplares)
-        lblEjemplaresocupados=view.findViewById(R.id.lblejEmplaresocupados)
+        lblejemplaresocupados=view.findViewById(R.id.lblejemplaresocupados)
         lbldescripion=view.findViewById(R.id.lbldescripion)
         btnEditar=view.findViewById(R.id.btnEditar)
         btnEditar.setOnClickListener{editar()}
         btneliminar=view.findViewById(R.id.btneliminar)
         btneliminar.setOnClickListener{eliminar()}
+        consultarLibro()
 
         return view
     }
+
 fun editar(){
+    var parametros = JSONObject()
+    parametros.put("nombre_autor", lblautor.text.toString())
+    parametros.put("titulo", lbllibro.text.toString())
+    parametros.put("isbn", lbLisbn.text.toString())
+    parametros.put("genero", lbLisbn.text.toString())
+    parametros.put("num_ejemplares_disponibles", lblejemplares.text.toString())
+    parametros.put("num_ejemplares_ocupados", lblejemplaresocupados.text.toString())
 
+    var request = JsonObjectRequest(
+        Request.Method.PUT, //metodo de la peticion
+        config.urllibro + id, //url
+        parametros, //parametros
+        { response ->
+            Toast.makeText(context, "Se actualizo correctamente", Toast.LENGTH_LONG).show()
+        },
+        { error ->
+            Toast.makeText(context, "Error al actualizar", Toast.LENGTH_LONG).show()
+        }//error en la petición
+    )
+    var queue = Volley.newRequestQueue(context)
+    queue.add(request)
 }
-    fun eliminar(){
 
+    fun eliminar(){
+        if (id != "") {
+            val request = JsonObjectRequest(
+                Request.Method.DELETE, // Método DELETE para eliminar el recurso
+                config.urllibro + id, // URL del recurso con el ID del libro a eliminar
+                null, // No se envían parámetros en el cuerpo para DELETE
+                { response ->
+                    Toast.makeText(context, "Libro eliminado correctamente", Toast.LENGTH_LONG).show()
+                    // Aquí puedes implementar lógica adicional después de eliminar el libro
+                },
+                { error ->
+                    Toast.makeText(context, "Error al eliminar el libro", Toast.LENGTH_LONG).show()
+                    // Manejo de errores en la petición DELETE
+                }
+            )
+            val queue = Volley.newRequestQueue(context)
+            queue.add(request)
+        } else {
+            Toast.makeText(context, "No hay id válido para eliminar el libro", Toast.LENGTH_LONG).show()
+        }
     }
     companion object {
         /**
