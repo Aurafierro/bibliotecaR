@@ -15,4 +15,8 @@
     <string name="mensaje">Ingrese los datos requeridos.</string>
     <string name="guardar">Guardar</string>
     <string name="editar">editar</string>
+
+
+    <string name="open_nav">Open Navigation Drawer</string>
+    <string name="close_nav">Close Navigation Drawer</string>
 </resources>
