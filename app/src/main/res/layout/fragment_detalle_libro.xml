@@ -6,73 +6,95 @@
     android:layout_height="match_parent"
     tools:context=".detalleLibroFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
         <TextView
             android:id="@+id/lbllibro"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="46dp"
+            android:layout_marginTop="24dp"
             android:text="Titulo"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintMarginTop="25dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/lblautor"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:text="Nombre del autor"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintMarginTop="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lbllibro" />
 
         <TextView
             android:id="@+id/lbLisbn"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Isbnn del libro"
-            android:textSize="24sp" />
+            android:layout_marginTop="40dp"
+            android:text="Isbn del libro"
+            android:textSize="24sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintMarginTop="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lblautor" />
 
         <TextView
             android:id="@+id/lblgenero"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="genero"
-            android:textSize="24sp" />
+            android:layout_marginTop="40dp"
+            android:text="Género"
+            android:textSize="24sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintMarginTop="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lbLisbn" />
 
         <TextView
             android:id="@+id/lblejemplares"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:text="Números de ejemplares disponibles"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/lbldescripion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Descripción"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintMarginTop="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lblgenero" />
 
         <TextView
             android:id="@+id/lblejEmplaresocupados"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
             android:text="Números de ejemplares ocupados"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintMarginTop="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lblejemplares" />
 
-        <Button
-            android:id="@+id/btneliminar"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/lbldescripion"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="eliminar"
-            android:textSize="24sp" />
-
-        <Button
-            android:id="@+id/btnEditar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="editar"
-            android:textSize="24sp" />
-    </LinearLayout>
+            android:layout_marginTop="44dp"
+            android:text="Descripción"
+            android:textSize="24sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintMarginTop="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lblejEmplaresocupados" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

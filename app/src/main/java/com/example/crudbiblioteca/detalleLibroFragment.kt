@@ -42,7 +42,7 @@ class detalleLibroFragment : Fragment() {
     private lateinit var lbldescripion: TextView
     private lateinit var btnEditar: Button
     private lateinit var btneliminar:Button
-    private var id:String="27a1fd54-1368-4e40-8e18-f9817f66f3c4"
+    private var id:String=""
 
     fun  consultarLibro(){
         if (id!=""){

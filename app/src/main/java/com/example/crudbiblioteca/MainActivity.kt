@@ -25,14 +25,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HomeFragment()).commit()
-            navigationView.setCheckedItem(R.id.nav_home)
+                .replace(R.id.fragment_container, PaginaPrincipalFragment()).commit()
+            navigationView.setCheckedItem(R.id.nav_inicio)
         }
     }
+   
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.nav_inicio -> supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, PaginaPrincipalFragment()).commit()
             R.id.nav_home -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, guardarLibroFragment()).commit()
+            R.id.nav_settings -> supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragmen_guardar_usuario()).commit()
+            R.id.nav_share -> supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, guardar_prestamo()).commit()
+            R.id.nav_about -> supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, guardar_multa()).commit()
+
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true

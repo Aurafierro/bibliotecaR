@@ -1,5 +1,7 @@
 package com.example.crudbiblioteca
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,10 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.JsonRequest
-import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.crudbiblioteca.config.config
 import org.json.JSONObject
@@ -50,8 +49,14 @@ class guardarLibroFragment : Fragment() {
     //traer id cualquiera
     private  var  id:String=""
 
+    fun edit(view: View, application: Context){
 
+        var intent= Intent(application,listaLibroFragment::class.java)
+        startActivity(intent)
+    }
     //metodo encargado de traer la informacion del libro
+
+
     fun  consultarLibro(){
         if (id!=""){
 
@@ -76,7 +81,7 @@ class guardarLibroFragment : Fragment() {
             queue.add(request)
         }
     }
- 
+
     fun guardarLibro(){
         try {
             if (id==""){//se crea el libro
@@ -152,6 +157,8 @@ class guardarLibroFragment : Fragment() {
 
         }
     }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
