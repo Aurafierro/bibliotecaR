@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/recCard"
+            android:layout_width="match_parent"
+            android:layout_height="803dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="5.5">
+
+                <ImageView
+                    android:id="@+id/recImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:onClick="delete"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/persona" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.3"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/nombre"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Andres Perdomo"
+                            android:textColor="@color/lavender"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/recDesc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="0"
+                            android:text="Desc"
+                            android:textSize="18sp" />
+
+
+                        <TextView
+                            android:id="@+id/correoo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Correo:Andr12@gmail.com"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/direccionn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Dirección:Cll 42 n3-92"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/telefono"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Telefono:3168704586 "
+                            android:textSize="18sp" />
+
+
+
+                        <TextView
+                            android:id="@+id/tipo_documento"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Tipo de usuario:Lector"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/imageView3"
+                            android:layout_width="137dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:onClick="editar_info"
+                            app:srcCompat="@drawable/edit" />
+
+                        <ImageView
+                            android:id="@+id/imageView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/delete" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Segunda CardView -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/recCard2"
+            android:layout_width="match_parent"
+            android:layout_height="730dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="5.5">
+
+                <ImageView
+                    android:id="@+id/recImage2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/persona" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.3"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/nombres"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Maria Paz Fierro"
+                            android:textColor="@color/lavender"
+                            android:textSize="20sp" />
+
+
+
+
+                        <TextView
+                            android:id="@+id/correo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Correo:Maripa@gmail.com"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/direccion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Direccion:Carrera 23 n4-7"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tel"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="teléfono:3168704586"
+                            android:textSize="18sp" />
+
+                        <
+
+                        <TextView
+                            android:id="@+id/tipo_usuario"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Tipo de usuario:Lector"
+                            android:textSize="18sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/imageView5"
+                            android:layout_width="93dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:onClick="editar_info"
+                            app:srcCompat="@drawable/edit" />
+
+                        <ImageView
+                            android:id="@+id/imageView6"
+                            android:layout_width="106dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/delete" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>

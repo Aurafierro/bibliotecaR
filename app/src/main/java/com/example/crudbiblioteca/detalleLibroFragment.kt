@@ -103,7 +103,7 @@ class detalleLibroFragment : Fragment() {
         lbldescripion=view.findViewById(R.id.lbldescripion)
         btnEditar=view.findViewById(R.id.btnEditar)
         btnEditar.setOnClickListener{editar()}
-        btneliminar=view.findViewById(R.id.btneliminar)
+
         btneliminar.setOnClickListener{eliminar()}
         consultarLibro()
 
