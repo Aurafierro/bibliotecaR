@@ -46,6 +46,7 @@ class guardarLibroFragment : Fragment() {
     private lateinit var txtdescripcion:EditText
 
     private lateinit var btnGuardar:Button
+    private lateinit var btnListaLibro:Button
     //traer id cualquiera
     private  var  id:String=""
 
@@ -62,7 +63,7 @@ class guardarLibroFragment : Fragment() {
 
             var request=JsonObjectRequest(
                 Method.GET, //método de la petición
-                config.urllibro+id, //url
+                config.urllibro+id , //url
                 null, //parámetros
                 {response->
                     val gson=Gson()
@@ -181,8 +182,16 @@ class guardarLibroFragment : Fragment() {
         txtejemplaresocupados=view.findViewById(R.id.txtejemplaresocupados)
         txtdescripcion=view.findViewById(R.id.txtdescripcion)
         btnGuardar=view.findViewById(R.id.btnGuardar)
+        btnListaLibro=view.findViewById(R.id.btnListaLibro)
         btnGuardar.setOnClickListener{
             guardarLibro()
+        }
+        btnListaLibro.setOnClickListener {
+            val fragment = listaLibroFragment()
+            fragmentManager?.beginTransaction()
+                ?.replace(R.id.fragment_container, fragment)
+                ?.addToBackStack(null)
+                ?.commit()
         }
         consultarLibro()
         return view

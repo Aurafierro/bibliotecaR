@@ -1,12 +1,17 @@
 package com.example.crudbiblioteca
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import com.android.volley.Request
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.JsonRequest
 import com.android.volley.toolbox.Volley
 import com.example.crudbiblioteca.config.config
@@ -34,40 +39,83 @@ class listaLibroFragment : Fragment() {
         }
     }
 
-    fun cargar_libro(){
-        try{
-            var request=JsonArrayRequest(
-                Request.Method.GET,
-                config.urllibro,
-                null,
-                {response->
-                    var registros=response
-                },
-                {error->}
-            )
-            val queue= Volley.newRequestQueue(context)
-            queue.add(request)
-        }catch (e:Exception){
+    private lateinit var view: View
 
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lista_libro, container, false)}
-       /* lbllibro=view.findViewById(R.id.lbllibro)
-        lblautor=view.findViewById(R.id.lblautor)
+        view = inflater. inflate (R.layout.fragment_lista_libro, container, false)
 
-        btnEditar=view.findViewById(R.id.btnEditar)
-        btnEditar.setOnClickListener{editar()}
-        btneliminar=view.findViewById(R.id.btneliminar)
-        btneliminar.setOnClickListener{eliminar()}
+        cargar_libro()
+        return  view
+    }
+    private fun cargar_libro() {
+        val request = JsonArrayRequest(
+            Request.Method.GET,
+            config.urllibro,
+            null,
+            { response ->
+                val recycler = view.findViewById<RecyclerView>(R.id.listaLibro)
+                recycler.layoutManager = LinearLayoutManager(requireContext())
+                val adapter = adapter(response, requireContext())
 
+                adapter.onclickEditar = { libro ->
+                    val bundle = Bundle().apply {
+                        putString("id_libro", libro.getString("id_libro"))
+                    }
+                    val fragment = detalleLibroFragment().apply {
+                        arguments = bundle
+                    }
+                    requireFragmentManager().beginTransaction()
+                        .replace(R.id.container, fragment)
+                        .addToBackStack(null)
+                        .commit()
+                }
 
-*/
+                adapter.onclickEliminar = { libro ->
+                    val builder = AlertDialog.Builder(requireContext())
+                    builder.setMessage("Desea eliminar este Registro")
+                        .setPositiveButton("Si") { _, _ ->
+                            EliminarLibro(libro.getString("id_libro")) {
+                                cargar_libro() // Actualiza la lista después de eliminar
+                            }
+                        }
+                        .setNegativeButton("No", null)
+                        .show()
+                }
+                recycler.adapter = adapter
+            },
+            { error ->
+                Toast.makeText(context, "Error en la consulta", Toast.LENGTH_LONG).show()
+            }
+        )
+        val queue = Volley.newRequestQueue(context)
+        queue.add(request)
+    }
+
+    fun EliminarLibro(id: String, onSuccess:() -> Unit){
+
+        val request = JsonObjectRequest(
+            Request.Method.DELETE, // Método DELETE para eliminar el recurso
+            config.urllibro + id, // URL del recurso con el ID del libro a eliminar
+            null, // No se envían parámetros en el cuerpo para DELETE
+            { response ->
+                Toast.makeText(context, "Libro eliminado correctamente", Toast.LENGTH_LONG).show()
+                // Aquí puedes implementar lógica adicional después de eliminar el libro
+                onSuccess()
+            },
+            { error ->
+                Toast.makeText(context, "Error al eliminar el libro", Toast.LENGTH_LONG).show()
+                // Manejo de errores en la petición DELETE
+            }
+        )
+        val queue = Volley.newRequestQueue(context)
+        queue.add(request)
+    }
+
 
     companion object {
         /**

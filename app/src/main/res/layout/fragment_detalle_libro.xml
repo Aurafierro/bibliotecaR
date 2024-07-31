@@ -1,94 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".detalleLibroFragment">
+    tools:context=".guardarLibroFragment" >
 
-        <TextView
-            android:id="@+id/lbllibro"
-            android:layout_width="0dp"
-            android:layout_height="46dp"
-            android:layout_marginTop="24dp"
-            android:text="Titulo"
-            android:textSize="24sp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="409dp"
+            android:layout_height="729dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/lblautor"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Nombre del autor"
-            android:textSize="24sp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lbllibro" />
+                <TextView
+                    android:id="@+id/lbllibros"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/titulo" />
 
-        <TextView
-            android:id="@+id/lbLisbn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Isbn del libro"
-            android:textSize="24sp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lblautor" />
+                <EditText
+                    android:id="@+id/txtTitulos"
+                    android:layout_width="match_parent"
+                    android:layout_height="71dp"
+                    android:ems="10"
+                    android:hint="@string/mensaje"
+                    android:inputType="text" />
 
-        <TextView
-            android:id="@+id/lblgenero"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Género"
-            android:textSize="24sp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lbLisbn" />
+                <TextView
+                    android:id="@+id/lblautores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/autor" />
 
-        <TextView
-            android:id="@+id/lblejemplares"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Números de ejemplares disponibles"
-            android:textSize="24sp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lblgenero" />
+                <EditText
+                    android:id="@+id/txtAutors"
+                    android:layout_width="match_parent"
+                    android:layout_height="61dp"
+                    android:ems="10"
+                    android:hint="@string/mensaje"
+                    android:inputType="text" />
 
-        <TextView
-            android:id="@+id/lblejEmplaresocupados"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Números de ejemplares ocupados"
-            android:textSize="24sp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lblejemplares" />
+                <TextView
+                    android:id="@+id/lblisbns"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/isbn" />
 
-        <TextView
-            android:id="@+id/lbldescripion"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Descripción"
-            android:textSize="24sp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lblejEmplaresocupados" />
+                <EditText
+                    android:id="@+id/txtIsbns"
+                    android:layout_width="match_parent"
+                    android:layout_height="61dp"
+                    android:ems="10"
+                    android:hint="@string/mensaje"
+                    android:inputType="text" />
 
+                <TextView
+                    android:id="@+id/lblGeneros"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/genero" />
+
+                <EditText
+                    android:id="@+id/txtGeneros"
+                    android:layout_width="match_parent"
+                    android:layout_height="57dp"
+                    android:ems="10"
+                    android:hint="@string/mensaje"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/lblEjemplaress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/n_mero_de_ejemplares_disponiibles" />
+
+                <EditText
+                    android:id="@+id/txtejemplaress"
+                    android:layout_width="match_parent"
+                    android:layout_height="59dp"
+                    android:ems="10"
+                    android:hint="@string/mensaje"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/lblejemplaresocupadoss"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/n_mero_de_ejemplares_ocupados" />
+
+                <EditText
+                    android:id="@+id/txtejemplaresocupadoss"
+                    android:layout_width="match_parent"
+                    android:layout_height="57dp"
+                    android:ems="10"
+                    android:hint="@string/mensaje"
+                    android:inputType="text" />
+
+                <TextView
+                    android:id="@+id/lblDescripiones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="descripcion" />
+
+                <EditText
+                    android:id="@+id/txtdescripciones"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/descripcion"
+                    android:inputType="text" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+
+                        <Button
+                            android:id="@+id/btnGuardar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/editar" />
+
+                        <Button
+                            android:id="@+id/btnEditar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+
+                            android:text="Eliminar" />
+                </LinearLayout>
+        </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
