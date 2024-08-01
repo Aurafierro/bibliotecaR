@@ -8,5 +8,6 @@ class config {
     companion object{
         val urlBase="http://10.192.66.60:8080/api/v1/"
         val urllibro=urlBase+"libro/"
+        val urlusuario= urlBase+"usuario/"
     }
 }

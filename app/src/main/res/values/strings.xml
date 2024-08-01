@@ -17,6 +17,22 @@
     <string name="editar">editar</string>
 
 
+    <!--- STRING DE USUARIOS -->
+    <string name="nombre">Nombre:</string>
+    <string name="direccion">Dirección: </string>
+    <string name="correo">Correo: </string>
+    <string name="telefono">Télefono:</string>
+    <string name="descripcion_casa">Descripción casa:</string>
+    <string name="tipo_usuarios"> Tipo de usuario::</string>
+
+
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
+
+
+    <string-array name="tipos_usuario">
+        <item>Lector</item>
+        <item>Bibliotecario</item>
+        <item>Administrador</item>
+    </string-array>
 </resources>

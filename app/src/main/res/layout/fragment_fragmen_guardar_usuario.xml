@@ -14,74 +14,84 @@
 
         <!-- Campos del formulario -->
         <TextView
+            android:id="@+id/lblNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre *"
+            android:layout_marginBottom="8dp"
+            android:text="@string/nombre"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
+            android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/txtNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:hint="Ingrese su nombre"
-            android:inputType="text"
-            android:layout_marginBottom="16dp"/>
+            android:inputType="text" />
 
         <TextView
+            android:id="@+id/lblCorreo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Correo electrónico *"
+            android:layout_marginBottom="8dp"
+            android:text="@string/correo"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
+            android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/textCorreo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:hint="Ingrese su correo electrónico"
-            android:inputType="textEmailAddress"
-            android:layout_marginBottom="16dp"/>
+            android:inputType="textEmailAddress" />
 
         <TextView
+            android:id="@+id/lblDireccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dirección *"
+            android:layout_marginBottom="8dp"
+            android:text="@string/direccion"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
+            android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/textDireccion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:hint="Ingrese su dirección"
-            android:inputType="text"
-            android:layout_marginBottom="16dp"/>
+            android:inputType="text" />
 
         <TextView
+            android:id="@+id/lblTelefono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Teléfono *"
+            android:layout_marginBottom="8dp"
+            android:text="@string/telefono"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
+            android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/textTelefono"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:hint="Ingrese su teléfono"
-            android:inputType="phone"
-            android:layout_marginBottom="16dp"/>
+            android:inputType="phone" />
 
         <TextView
+            android:id="@+id/lblDescripcion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Descripción de la casa *"
+            android:layout_marginBottom="8dp"
+            android:text="@string/descripcion_casa"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
+            android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/textDescripcion"
             android:layout_width="match_parent"
             android:layout_height="41dp"
             android:layout_marginBottom="16dp"
@@ -92,31 +102,29 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tipo de usuario *"
+            android:layout_marginBottom="8dp"
+            android:text="@string/tipo_usuarios"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
+            android:textStyle="bold" />
 
-        <AutoCompleteTextView
+        <Spinner
+            android:id="@+id/textTipoUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Escribe el tipo de usuario que eres"
             android:layout_marginBottom="16dp"
-            android:completionThreshold="1"
-            android:dropDownHeight="wrap_content"
-            android:inputType="text"/>
+            android:entries="@array/tipos_usuario"/>
 
         <Button
-            android:id="@+id/button_guardar"
+            android:id="@+id/btnGuardarr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Guardar"/>
 
         <Button
-            android:id="@+id/button_editar"
+            android:id="@+id/btnListaUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Editar"/>
+            android:text="Lista"/>
 
     </LinearLayout>
 </FrameLayout>
